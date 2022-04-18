@@ -13,7 +13,7 @@ public:
 
 class Composite: public Component {
 public:
-	void add() {}
+	void add(Composite * ptr) {}
 	virtual Composite * GetComposite() override { return this; }
 };
 
