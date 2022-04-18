@@ -3,8 +3,7 @@
 class Composite;
 
 class Component {
-	Component * parent;
-	Component * child;
+	Component * parent, child;
 public:
 	Component() = default;
 	virtual Composite * GetComposite() { return nullptr; }
@@ -14,9 +13,11 @@ public:
 class Composite: public Component {
 public:
 	void add(Composite * ptr) {}
-	virtual Composite * GetComposite() override { return this; }
+	virtual Composite GetComposite() override { return *this; }
 };
 
 class Leaf: public Component {
 
 };
+
+int main() {}
