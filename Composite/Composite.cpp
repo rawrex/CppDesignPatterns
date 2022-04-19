@@ -3,10 +3,13 @@
 class Composite;
 
 class Component {
+protected:
 	Component * parent;
 	Component * child;
 public:
 	Component() = default;
+	virtual ~Component() = default;
+
 	virtual Composite * GetComposite() { return nullptr; }
 
 };
