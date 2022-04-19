@@ -10,7 +10,11 @@ public:
 	Component() = default;
 	virtual ~Component() = default;
 
-	virtual Composite * GetComposite() { return nullptr; }
+	//virtual Composite * GetComposite() { return nullptr; }
+	
+	virtual void add(Component * comp);
+	virtual void remove(Component * comp);
+	
 
 };
 
