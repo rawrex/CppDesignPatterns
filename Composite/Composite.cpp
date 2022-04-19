@@ -14,6 +14,8 @@ public:
 	
 	virtual void add(Component * comp);
 	virtual void remove(Component * comp);
+
+	virtual void operation() const = 0;
 	
 
 };
