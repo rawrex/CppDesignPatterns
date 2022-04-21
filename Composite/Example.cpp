@@ -66,4 +66,15 @@ private:
 
 };
 
+Currency CompositeEquipment::NetPrice () {
+	Iterator<Equipment*>* i = Createlterator();
+	Currency total = 0;
+
+	for (i->First(); !i->IsDone(); i->Next()) {
+		total += i->Current!tem()->NetPrice();
+	}
+	delete i;
+	return total;
+}
+
 int main () {}
