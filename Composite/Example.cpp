@@ -1,7 +1,8 @@
-// Equipment such as computers and stereo components are often organized into
-// part-whole or containment hierarchies
 #include <list>
 #include <string>
+
+// Equipment such as computers and stereo components are often organized into
+// part-whole or containment hierarchies
 
 using Watt = long double;
 using Currency = unsigned long long;
@@ -41,22 +42,28 @@ public:
 	virtual Watt power();
 	virtual Currency netPrice();
 	virtual Currency discountPrice();
+
 };
 
 
 class CompositeEquipment : public Equipment {
 public:
 	virtual ~CompositeEquipment();
-	virtual Watt Power();
-	virtual Currency NetPrice();
-	virtual Currency DiscountPrice();
-	virtual void Add(Equipment*);
-	virtual void Remove(Equipment*);
+
+	virtual Watt power();
+	virtual Currency netPrice();
+	virtual Currency discountPrice();
+
+	virtual void add(Equipment*);
+	virtual void remove(Equipment*);
 	//virtual Iterator<Equipment*>* Createlterator();
+
 protected:
-	CompositeEquipment(const char*);
+	CompositeEquipment(const std::string &);
+
 private:
 	std::list<Equipment*> _equipment;
+
 };
 
 int main () {}
