@@ -9,29 +9,34 @@ protected:
 public:
 	Component() = default;
 	virtual ~Component() = default;
-
-	//virtual Composite * GetComposite() { return nullptr; }
 	
 	virtual void add(Component * comp);
 	virtual void remove(Component * comp);
+	virtual void operation() = 0;
+	virtual Component * getChild(size_t i) const;
 
-	virtual void operation() const = 0;
-	
-
+	virtual Composite * GetComposite() { return nullptr; }
 };
 
 class Composite: public Component {
 public:
-	void add(Composite * ptr) {}
+	virtual void add(Component * comp);
+	virtual void remove(Component * comp);
+	virtual void operation();
+	virtual Component * getChild(size_t i) const;
+
 	virtual Composite * GetComposite() override { return this; }
 };
 
 class Leaf: public Component {
-
+public:
+	virtual void operation();
 };
+
 
 int main() {
 
+	// GetComposite usage case
 	Composite* composite = new Composite;
 	Leaf* leaf = new Leaf;
 
@@ -45,7 +50,8 @@ int main() {
 
 	component = leaf;
 
+	// component here is a leaf, so test will be a nullptr
 	if (test = component->GetComposite())
-		test->add(new Leaf);	// Won't add leaf
-
+		// Won't add leaf
+		test->add(new Leaf);
 }
