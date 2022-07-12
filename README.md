@@ -1,2 +1,2 @@
 # CppDesignPatterns
-Implementation of GoF Design Patterns
+My take on implementation of GoF Design Patterns for educational puroposes.
