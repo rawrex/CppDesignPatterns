@@ -13,6 +13,15 @@ public:
 	virtual void SomeFunction() const = 0;
 };
 
+class ConcreteProduct: public Product
+{
+public:
+	virtual void SomeFunction() const override
+	{
+		print(__PRETTY_FUNCTION__);
+	}
+};
+
 class Creator
 {
 public:
@@ -33,5 +42,8 @@ public:
 };
 
 int main() {
+
+	ConcreteCreator creator;
+	auto product = creator.FactoryMethod();
 
 }
