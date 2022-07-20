@@ -72,13 +72,14 @@ public:
 
 int main() {
 
+	// We use the same creator object to create different types of products
 	ConcreteCreator creator;
-	auto foo_product = creator.FactoryMethod(ProductId::FOO);
-	auto bar_product = creator.FactoryMethod(ProductId::BAR);
-	auto baz_product = creator.FactoryMethod(ProductId::BAZ);
+	auto foo_product_ptr = creator.FactoryMethod(ProductId::FOO);
+	auto bar_product_ptr = creator.FactoryMethod(ProductId::BAR);
+	auto baz_product_ptr = creator.FactoryMethod(ProductId::BAZ);
 
-	foo_product->SomeFunction();
-	bar_product->SomeFunction();
-	baz_product->SomeFunction();
+	foo_product_ptr->SomeFunction();
+	bar_product_ptr->SomeFunction();
+	baz_product_ptr->SomeFunction();
 
 }
