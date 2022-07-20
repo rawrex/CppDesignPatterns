@@ -20,6 +20,17 @@ public:
 	virtual std::shared_ptr<Product> FactoryMethod() const = 0;
 };
 
+class ConcreteCreator: public Creator
+{
+public:
+
+	// Concrete factory method
+	virtual std::shared_ptr<Product> FactoryMethod() const override 
+	{
+		print(__PRETTY_FUNCTION__);
+		return nullptr;
+	}	
+};
 
 int main() {
 
