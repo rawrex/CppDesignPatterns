@@ -74,6 +74,7 @@ int main() {
 
 	// We use the same creator object to create different types of products
 	ConcreteCreator creator;
+
 	auto foo_product_ptr = creator.FactoryMethod(ProductId::FOO);
 	auto bar_product_ptr = creator.FactoryMethod(ProductId::BAR);
 	auto baz_product_ptr = creator.FactoryMethod(ProductId::BAZ);
