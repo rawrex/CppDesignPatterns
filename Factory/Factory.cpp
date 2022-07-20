@@ -8,12 +8,9 @@ void print(const std::string& msg) { std::cout << msg << std::endl; }
 // Abstract product class 
 class Product
 {
-	std::string name;
 public:
-	Product(const std::string& nm = "Default Name") : name(nm) {}
+	// Pure virtual member function that will be overriden by concrete product classes
 	virtual void SomeFunction() const = 0;
-	
-	~Product() = default;
 };
 
 class Creator
@@ -23,23 +20,7 @@ public:
 	virtual std::shared_ptr<Product> FactoryMethod() const = 0;
 };
 
-class ConcreteCreator: public Creator
-{
-public:
-
-	// Concrete factory method
-	virtual std::shared_ptr<Product> FactoryMethod() const override 
-	{
-		print(__PRETTY_FUNCTION__);
-		return nullptr;
-	}	
-
-	~ConcreteCreator() = default;
-};
 
 int main() {
-
-	ConcreteCreator creator;
-	creator.FactoryMethod();
 
 }
