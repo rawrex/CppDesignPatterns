@@ -43,44 +43,66 @@ public:
 	}
 };
 
-// Abstract Factory class
-class Creator
+// Factory class, an abstract class that provides the common interface
+class Factory
 {
 public:
 	// Pure virtual function that concrete methods will override returning concrete products
-	virtual std::shared_ptr<Product> FactoryMethod(ProductId) const = 0;
+	virtual std::shared_ptr<Product> Create() const = 0;
 };
 
-// Concrete Factory class
-class ConcreteCreator: public Creator
+// Concrete Factory class that creates Foo products
+class FooFactory: public Factory
+{
+	virtual std::shared_ptr<Product> Create() const override 
+	{
+		return std::make_shared<FooProduct>();
+	}
+};
+
+// Concrete Factory class that creates Bar products
+class BarFactory: public Factory
+{
+	virtual std::shared_ptr<Product> Create() const override 
+	{
+		return std::make_shared<BarProduct>();
+	}
+};
+
+// Concrete Factory class that creates Baz products
+class BazFactory: public Factory
+{
+	virtual std::shared_ptr<Product> Create() const override 
+	{
+		return std::make_shared<BazProduct>();
+	}
+};
+
+
+// A client part of the pattern
+// Client is a user of the factory interface 
+// That has is agnositc of the type of factory it uses and of the type of products it produces
+class Client 
 {
 public:
-	// Concrete factory method
-	virtual std::shared_ptr<Product> FactoryMethod(ProductId pid) const override 
+	void use(const Factory& factory)
 	{
-		print(__PRETTY_FUNCTION__);
-
-		switch(pid)
-		{
-			case ProductId::FOO: return std::make_shared<FooProduct>();
-			case ProductId::BAR: return std::make_shared<BarProduct>();
-			case ProductId::BAZ: return std::make_shared<BazProduct>();
-			default: return nullptr; break;
-		}
-	}	
+		std::shared_ptr<Product> product = factory.Create();
+		product->SomeFunction();
+	}
 };
+		
 
 int main() {
 
 	// We use the same creator object to create different types of products
-	ConcreteCreator creator;
+	FooFactory foo_creator;
+	BarFactory bar_creator;
+	BazFactory baz_creator;
 
-	auto foo_product_ptr = creator.FactoryMethod(ProductId::FOO);
-	auto bar_product_ptr = creator.FactoryMethod(ProductId::BAR);
-	auto baz_product_ptr = creator.FactoryMethod(ProductId::BAZ);
-
-	foo_product_ptr->SomeFunction();
-	bar_product_ptr->SomeFunction();
-	baz_product_ptr->SomeFunction();
+	Client client;
+	client.use(foo_creator);
+	client.use(bar_creator);
+	client.use(baz_creator);
 
 }
