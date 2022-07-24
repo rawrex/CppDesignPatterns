@@ -5,8 +5,6 @@
 // Utilty function to print messages to stdout
 void print(const std::string& msg) { std::cout << msg << std::endl; }
 
-enum class ProductId { FOO, BAR, BAZ };
-
 // Abstract product class 
 class Product
 {
