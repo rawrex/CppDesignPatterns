@@ -79,12 +79,13 @@ class BazFactory: public Factory
 
 // A client part of the pattern
 // Client is a user of the factory interface 
-// That has is agnositc of the type of factory it uses and of the type of products it produces
 class Client 
 {
 public:
 	void use(const Factory& factory)
 	{
+		// A clinet is agnositc of the type of factory it uses 
+		// and of the type of products this factory produces
 		std::shared_ptr<Product> product = factory.Create();
 		product->SomeFunction();
 	}
