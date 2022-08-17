@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 #include <memory>
 #include <string>
@@ -47,6 +48,7 @@ class BasicFactory
 public:
 	// Pure virtual function that concrete methods will override returning concrete products
 	virtual std::unique_ptr<Product> Create() const = 0;
+	virtual ~BasicFactory() = default;
 };
 
 // Concrete Factory class that creates Foo products
@@ -90,18 +92,3 @@ public:
 		product->SomeFunction();
 	}
 };
-		
-
-int main() {
-
-	// We use the same creator object to create different types of products
-	FooFactory foo_creator;
-	BarFactory bar_creator;
-	BazFactory baz_creator;
-
-	Client client;
-	client.use(foo_creator);
-	client.use(bar_creator);
-	client.use(baz_creator);
-
-}
