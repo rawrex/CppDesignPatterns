@@ -42,37 +42,37 @@ public:
 };
 
 // Factory class, an abstract class that provides the common interface
-class Factory
+class BasicFactory
 {
 public:
 	// Pure virtual function that concrete methods will override returning concrete products
-	virtual std::shared_ptr<Product> Create() const = 0;
+	virtual std::unique_ptr<Product> Create() const = 0;
 };
 
 // Concrete Factory class that creates Foo products
-class FooFactory: public Factory
+class FooFactory: public BasicFactory
 {
-	virtual std::shared_ptr<Product> Create() const override 
+	virtual std::unique_ptr<Product> Create() const override 
 	{
-		return std::make_shared<FooProduct>();
+		return std::make_unique<FooProduct>();
 	}
 };
 
 // Concrete Factory class that creates Bar products
-class BarFactory: public Factory
+class BarFactory: public BasicFactory
 {
-	virtual std::shared_ptr<Product> Create() const override 
+	virtual std::unique_ptr<Product> Create() const override 
 	{
-		return std::make_shared<BarProduct>();
+		return std::make_unique<BarProduct>();
 	}
 };
 
 // Concrete Factory class that creates Baz products
-class BazFactory: public Factory
+class BazFactory: public BasicFactory
 {
-	virtual std::shared_ptr<Product> Create() const override 
+	virtual std::unique_ptr<Product> Create() const override 
 	{
-		return std::make_shared<BazProduct>();
+		return std::make_unique<BazProduct>();
 	}
 };
 
@@ -82,11 +82,11 @@ class BazFactory: public Factory
 class Client 
 {
 public:
-	void use(const Factory& factory)
+	void use(const BasicFactory& factory)
 	{
 		// A clinet is agnositc of the type of factory it uses 
 		// and of the type of products this factory produces
-		std::shared_ptr<Product> product = factory.Create();
+		std::unique_ptr<Product> product = factory.Create();
 		product->SomeFunction();
 	}
 };
