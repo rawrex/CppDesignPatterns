@@ -2,39 +2,47 @@
 
 class Composite;
 
-class Component {
-protected:
-	Component * parent;
-	Component * child;
+class Component 
+{
 public:
 	Component() = default;
 	virtual ~Component() = default;
 	
-	virtual void add(Component * comp);
-	virtual void remove(Component * comp);
+	virtual void add(Component* comp) {}
+	virtual void remove(Component* comp) {}
+
 	virtual void operation() = 0;
-	virtual Component * getChild(size_t i) const;
+
+	virtual Component* getChild(size_t i) const { return nullptr; }
 
 	virtual Composite * GetComposite() { return nullptr; }
+
+protected:
+	Component* parent = nullptr;
+	Component* child = nullptr;
 };
 
-class Composite: public Component {
+class Composite: public Component 
+{
 public:
-	virtual void add(Component * comp);
-	virtual void remove(Component * comp);
-	virtual void operation();
-	virtual Component * getChild(size_t i) const;
+	virtual void add(Component* comp) {}
+	virtual void remove(Component * comp) {}
+	virtual void operation() {}
+
+	virtual Component* getChild(size_t i) const { return nullptr; }
 
 	virtual Composite * GetComposite() override { return this; }
 };
 
-class Leaf: public Component {
+class Leaf: public Component 
+{
 public:
-	virtual void operation();
+	virtual void operation() {}
 };
 
 
-int main() {
+int main() 
+{
 
 	// GetComposite usage case
 	Composite* composite = new Composite;

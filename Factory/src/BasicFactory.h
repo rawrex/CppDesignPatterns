@@ -3,6 +3,10 @@
 #include <memory>
 #include <string>
 
+#ifdef _WIN32
+	#define __PRETTY_FUNCTION__ __FUNCSIG__
+#endif
+
 // Utilty function to print messages to stdout
 void print(const std::string& msg) { std::cout << msg << std::endl; }
 

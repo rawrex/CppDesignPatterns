@@ -1,13 +1,14 @@
 // Concrete class
-class VisualComponent {
+class VisualComponent 
+{
 public:
-	virtual void draw();
-	virtual void resize();
+	virtual void draw() {}
+	virtual void resize() {}
 };
 
 class Decorator : public VisualComponent {
 public:
-	Decorator(VisualComponent*);
+	Decorator(VisualComponent* vc) : visual_component(vc) {}
 	virtual void draw() override
 	{
 		visual_component->draw();
@@ -25,14 +26,14 @@ private:
 // Bordered visual component class 
 class BorderDecorator : public Decorator {
 public:
-	BorderDecorator(VisualComponent* vc_ptr, int border_width);
+	BorderDecorator(VisualComponent* vc_ptr, int border_width) : Decorator(vc_ptr), width(border_width) {}
 	virtual void draw() override 
 	{
 		Decorator::draw();
 		drawBorder(width);
 	}
 private:
-	void drawBorder(int);
+	void drawBorder(int) {}
 private:
 	int width;
 };
@@ -40,7 +41,7 @@ private:
 // Scrolled visual component class 
 class ScrollDecorator : public Decorator {
 public:
-	ScrollDecorator(VisualComponent* vc_ptr);
+	ScrollDecorator(VisualComponent* vc_ptr) : Decorator(vc_ptr) {}
 	virtual void draw() override 
 	{
 		Decorator::draw();

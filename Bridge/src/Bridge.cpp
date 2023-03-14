@@ -54,14 +54,14 @@ public:
 };
 
 // These two add up to the class hierarchy of interfaces
-class RefinedAbstraction_A: public Abstraction 
+class RefinedAbstraction_A : public Abstraction
 {
 	// Extended interface for the Abstraction
-}
+};
 
 class RefinedAbstraction_B: public Abstraction 
 {
 	// Extended interface for the Abstraction
-}
+};
 
 int main() {}
