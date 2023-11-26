@@ -3,12 +3,13 @@
 
 int main() 
 {
-	// We use the same creator object to create different types of products
+	Client client;
+
 	// CachedLazyFooFactory foo_creator;
 	BarFactory bar_creator;
 	BazFactory baz_creator;
 
-	Client client;
+	// We use the same client object to create different types of products
 	// client.use(foo_creator);
 	client.use(bar_creator);
 	client.use(baz_creator);
